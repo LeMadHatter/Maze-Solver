@@ -19,8 +19,8 @@ def main():
     #     undo = (i % 2 == 0)
     #     cells[i].draw_move(cells[i + 1], undo)
 
-    maze = Maze(10, 10, 10, 10, 40, 40, win)
-
+    maze = Maze(10, 10, 8, 10, 40, 40, win)
+    maze.solve()
     win.wait_for_close()
 
 

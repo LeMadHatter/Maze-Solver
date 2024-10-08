@@ -12,6 +12,7 @@ class Cell():
         self.x2 = x2
         self.y2 = y2
         self.window = window
+        self.visited = False
         #corners starting from top left going clockwise
         self.corners = [
             Point(self.x1, self.y1),
@@ -29,14 +30,10 @@ class Cell():
         self.center = self.get_center()
 
     def draw(self): #x1,y1 is top left, x2,y2 is bottom right
-        if self.has_top_wall:
-            self.window.draw_line(self.lines[0], "black")
-        if self.has_right_wall:
-            self.window.draw_line(self.lines[1], "black")
-        if self.has_bottom_wall:
-            self.window.draw_line(self.lines[2], "black")
-        if self.has_left_wall:
-            self.window.draw_line(self.lines[3], "black")
+        self.window.draw_line(self.lines[0], "black" if self.has_top_wall else "#d9d9d9")
+        self.window.draw_line(self.lines[1], "black" if self.has_right_wall else "#d9d9d9")
+        self.window.draw_line(self.lines[2], "black" if self.has_bottom_wall else "#d9d9d9")
+        self.window.draw_line(self.lines[3], "black" if self.has_left_wall else "#d9d9d9")
 
     def draw_move(self, to_cell, undo=False):
         move = Line(self.center, to_cell.center)
